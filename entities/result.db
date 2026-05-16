@@ -1,0 +1,34 @@
+{
+  "name": "Result",
+  "type": "object",
+  "properties": {
+    "tournament_name": {
+      "type": "string"
+    },
+    "banner_url": {
+      "type": "string"
+    },
+    "point_table_url": {
+      "type": "string"
+    },
+    "result_image_url": {
+      "type": "string"
+    },
+    "mvp_image_url": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "placement": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "tournament_name"
+  ]
+}

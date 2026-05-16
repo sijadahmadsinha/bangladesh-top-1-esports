@@ -1,0 +1,30 @@
+{
+  "name": "Earning",
+  "type": "object",
+  "properties": {
+    "tournament_name": {
+      "type": "string"
+    },
+    "placement": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "BDT"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "banner_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "tournament_name",
+    "amount"
+  ]
+}

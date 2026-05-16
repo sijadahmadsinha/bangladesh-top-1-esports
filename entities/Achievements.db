@@ -1,0 +1,41 @@
+{
+  "name": "Achievement",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "tournament_name": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "placement": {
+      "type": "string",
+      "enum": [
+        "1st Place",
+        "2nd Place",
+        "3rd Place",
+        "MVP",
+        "Top 5",
+        "Special Award"
+      ],
+      "default": "1st Place"
+    },
+    "prize_amount": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "placement"
+  ]
+}

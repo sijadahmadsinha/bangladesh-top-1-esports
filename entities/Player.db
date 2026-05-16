@@ -1,0 +1,60 @@
+{
+  "name": "Player",
+  "type": "object",
+  "properties": {
+    "ign": {
+      "type": "string",
+      "description": "In-game name"
+    },
+    "real_name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "IGL",
+        "Rusher",
+        "Sniper",
+        "Support",
+        "All-rounder",
+        "Coach",
+        "Manager"
+      ],
+      "default": "Rusher"
+    },
+    "country": {
+      "type": "string",
+      "default": "Bangladesh"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "facebook_url": {
+      "type": "string"
+    },
+    "youtube_url": {
+      "type": "string"
+    },
+    "tiktok_url": {
+      "type": "string"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "order": {
+      "type": "number",
+      "default": 0
+    },
+    "jersey_number": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "ign",
+    "role"
+  ]
+}

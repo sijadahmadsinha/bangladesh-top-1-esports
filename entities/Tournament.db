@@ -1,0 +1,56 @@
+{
+  "name": "Tournament",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "organizer": {
+      "type": "string"
+    },
+    "banner_url": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "time": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Upcoming",
+        "Live",
+        "Finished"
+      ],
+      "default": "Upcoming"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Official",
+        "Unofficial"
+      ],
+      "default": "Official"
+    },
+    "youtube_link": {
+      "type": "string"
+    },
+    "prize_pool": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "placement": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "status"
+  ]
+}
