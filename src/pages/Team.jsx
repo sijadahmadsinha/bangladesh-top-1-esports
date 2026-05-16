@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import SectionHeader from '../components/ui/SectionHeader';
 import LoadingScreen from '../components/ui/LoadingScreen';
-import { Facebook, Youtube, Music, Target, Trophy, TrendingUp } from 'lucide-react';
+import { Facebook, Youtube } from 'lucide-react';
 
 function PlayerCard({ player, index }) {
   const kdRatio = player.matches_played > 0 ? (player.kills / player.matches_played).toFixed(1) : '0.0';

@@ -3,7 +3,7 @@ import { Link, useLocation, Outlet } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard, Users, Trophy, Medal, DollarSign,
-  Image, Settings, ChevronRight, Menu, X, Shield
+  Image, ChevronRight, Menu, X, Shield
 } from 'lucide-react';
 
 const ADMIN_BASE = '/top-1website';

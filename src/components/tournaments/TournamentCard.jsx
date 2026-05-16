@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CalendarDays, Clock, ChevronDown, Youtube, User } from 'lucide-react';
+import { CalendarDays, Clock, ChevronDown, User } from 'lucide-react';
 import StatusBadge from '../ui/StatusBadge';
 
 export default function TournamentCard({ tournament, index }) {
