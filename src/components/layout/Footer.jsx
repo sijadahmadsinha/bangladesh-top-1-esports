@@ -39,8 +39,9 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               {[
                 { label: 'Discord', url: '#', handle: 'TOP-1 Esports' },
-                { label: 'YouTube', url: 'https://www.youtube.com/@raadvaiyt829', handle: '@raadvaiyt829' },
-                { label: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61583270264416', handle: 'Bangladesh Top.1' },
+                { label: 'YouTube', url: 'https://youtube.com/@raadvaiesports?si=xI5DSFtjiElxI7q_', handle: '@raadvaiesports' },
+                { label: 'Facebook Page', url: 'https://www.facebook.com/profile.php?id=61583270264416', handle: 'Bangladesh Top.1' },
+                { label: 'Facebook Group', url: 'https://www.facebook.com/groups/1139101504644099/', handle: 'Community Group' },
                 { label: 'TikTok', url: 'https://www.tiktok.com/@raadvaiyt.bdtop1', handle: '@raadvaiyt.bdtop1' }
               ].map(({ label, url, handle }) => (
                 <a key={label} href={url} target="_blank" rel="noopener noreferrer"
