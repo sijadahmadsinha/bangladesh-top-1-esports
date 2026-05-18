@@ -7,7 +7,7 @@ import SocialIcon from '../components/ui/SocialIcon';
 const SOCIALS = [
   {
     name: 'Discord',
-    handle: 'TOP-1 Esports',
+    handle: 'Upcoming',
     description: 'Join our Discord server for live updates, match discussions, and community events.',
     url: 'https://discord.gg/top1esports',
     members: '100K+',
@@ -17,9 +17,9 @@ const SOCIALS = [
   {
     name: 'YouTube',
     handle: '@raadvaiesports',
-    description: 'Watch tournament VODs, highlights, and behind-the-scenes content.',
+    description: 'Watch tournament videos, highlights,  behind-the-scenes content, and many more.',
     url: 'https://youtube.com/@raadvaiesports?si=xI5DSFtjiElxI7q_',
-    members: '100K+',
+    members: '110K+',
     cta: 'Subscribe',
     color: 'from-red-900/20 to-transparent',
   },

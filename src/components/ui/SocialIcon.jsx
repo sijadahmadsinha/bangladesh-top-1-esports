@@ -7,6 +7,8 @@ import instagramIcon from '@/assets/instagram-icon.svg';
 const iconMap = {
   facebook: facebookIcon,
   fb: facebookIcon,
+  facebookpage: facebookIcon,
+  facebookgroup: facebookIcon,
   youtube: youtubeIcon,
   tiktok: tiktokIcon,
   music: tiktokIcon,

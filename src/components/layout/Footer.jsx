@@ -38,7 +38,7 @@ export default function Footer() {
             <p className="font-mono text-xs text-steel tracking-ultra uppercase mb-6">Follow Us</p>
             <div className="flex flex-col gap-3">
               {[
-                { label: 'Discord', url: '#', handle: 'TOP-1 Esports' },
+                { label: 'Discord', url: '#', handle: 'Upcoming...' },
                 { label: 'YouTube', url: 'https://youtube.com/@raadvaiesports?si=xI5DSFtjiElxI7q_', handle: '@raadvaiesports' },
                 { label: 'Facebook Page', url: 'https://www.facebook.com/profile.php?id=61583270264416', handle: 'Bangladesh Top.1' },
                 { label: 'Facebook Group', url: 'https://www.facebook.com/groups/1139101504644099/', handle: 'Community Group' },
