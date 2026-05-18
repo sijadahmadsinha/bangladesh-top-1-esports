@@ -42,7 +42,7 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="!fixed top-0 left-0 w-full !z-[9999]"
+        className="!fixed top-0 left-0 w-full !z-[9999] bg-gradient-to-b from-red-600/70 via-red-600/10 to-transparent lg:bg-none lg:from-transparent lg:to-transparent"
       >
         {/* Logo row */}
         <div className="flex justify-center pt-3 pb-1">
