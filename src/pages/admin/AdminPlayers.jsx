@@ -4,7 +4,7 @@ import EntityManager from '../../components/admin/EntityManager';
 const FIELDS = [
   ['ign', { type: 'string' }],
   ['real_name', { type: 'string' }],
-  ['role', { type: 'string', enum: ['IGL', 'Rusher', 'Sniper', 'Support', 'All-rounder', 'Coach', 'Manager'] }],
+  ['role', { type: 'string', enum: ['IGL', 'Rusher', 'Sniper', 'Support', 'Bomber', 'All-rounder', 'Coach', 'Manager'] }],
   ['country', { type: 'string' }],
   ['jersey_number', { type: 'string' }],
   ['uid', { type: 'string' }],

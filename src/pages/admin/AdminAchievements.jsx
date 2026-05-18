@@ -5,7 +5,7 @@ import PlacementBadge from '../../components/ui/PlacementBadge';
 const FIELDS = [
   ['title', { type: 'string' }],
   ['tournament_name', { type: 'string' }],
-  ['placement', { type: 'string', enum: ['1st Place', '2nd Place', '3rd Place', 'MVP', 'Top 5', 'Special Award'] }],
+  ['placement', { type: 'string' }],
   ['prize_amount', { type: 'string' }],
   ['date', { type: 'string', format: 'date' }],
   ['description', { type: 'string' }],
