@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { base44 } from '@/api/base44Client';
 import SectionHeader from '../components/ui/SectionHeader';
 import LoadingScreen from '../components/ui/LoadingScreen';
-import { Facebook, Youtube } from 'lucide-react';
+import SocialIcon from '../components/ui/SocialIcon';
 
 function PlayerCard({ player, index }) {
   const kdRatio = player.matches_played > 0 ? (player.kills / player.matches_played).toFixed(1) : '0.0';
@@ -79,14 +79,14 @@ function PlayerCard({ player, index }) {
             <div className="flex items-center gap-3 relative z-20">
               {player.facebook_url && (
                 <a href={player.facebook_url} target="_blank" rel="noopener noreferrer"
-                  className="text-steel hover:text-silver transition-colors min-h-0 p-1">
-                  <Facebook size={14} />
+                  className="text-steel hover:text-silver transition-colors min-h-0 p-1 flex items-center justify-center">
+                  <SocialIcon platform="Facebook" size={14} />
                 </a>
               )}
               {player.youtube_url && (
                 <a href={player.youtube_url} target="_blank" rel="noopener noreferrer"
-                  className="text-steel hover:text-silver transition-colors min-h-0 p-1">
-                  <Youtube size={14} />
+                  className="text-steel hover:text-silver transition-colors min-h-0 p-1 flex items-center justify-center">
+                  <SocialIcon platform="YouTube" size={14} />
                 </a>
               )}
             </div>

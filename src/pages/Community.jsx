@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import SectionHeader from '../components/ui/SectionHeader';
 import ManagementCarousel from '../components/ManagementCarousel';
-import { ArrowRight, MessageCircle, Youtube, Music, Instagram, Facebook } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import SocialIcon from '../components/ui/SocialIcon';
 
 const SOCIALS = [
   {
@@ -9,8 +10,7 @@ const SOCIALS = [
     handle: 'TOP-1 Esports',
     description: 'Join our Discord server for live updates, match discussions, and community events.',
     url: 'https://discord.gg/top1esports',
-    icon: MessageCircle,
-    members: '1K+',
+    members: '100K+',
     cta: 'Join Server',
     color: 'from-[#5865F2]/20 to-transparent',
   },
@@ -19,8 +19,7 @@ const SOCIALS = [
     handle: '@top1esports',
     description: 'Watch tournament VODs, highlights, and behind-the-scenes content.',
     url: 'https://youtube.com/@top1esports',
-    icon: Youtube,
-    members: '5K+',
+    members: '100K+',
     cta: 'Subscribe',
     color: 'from-red-900/20 to-transparent',
   },
@@ -29,8 +28,7 @@ const SOCIALS = [
     handle: 'TOP-1 Esports BD',
     description: 'Follow us for tournament announcements and team news.',
     url: 'https://facebook.com/top1esportsbd',
-    icon: Facebook,
-    members: '10K+',
+    members: '50K+',
     cta: 'Follow',
     color: 'from-blue-900/20 to-transparent',
   },
@@ -39,21 +37,11 @@ const SOCIALS = [
     handle: '@top1esports',
     description: 'Short clips, highlights, and fun content from the team.',
     url: 'https://tiktok.com/@top1esports',
-    icon: Music,
-    members: '3K+',
+    members: '1m+',
     cta: 'Follow',
     color: 'from-pink-900/10 to-transparent',
   },
-  {
-    name: 'Instagram',
-    handle: '@top1esports',
-    description: 'Visual content, player spotlights, and tournament photos.',
-    url: 'https://instagram.com/top1esports',
-    icon: Instagram,
-    members: '2K+',
-    cta: 'Follow',
-    color: 'from-purple-900/10 to-transparent',
-  },
+ 
 ];
 
 export default function Community() {
@@ -88,7 +76,7 @@ export default function Community() {
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-4">
                   <div className="w-12 h-12 bg-silver/5 border border-silver/10 flex items-center justify-center">
-                    <social.icon size={22} className="text-silver" />
+                    <SocialIcon platform={social.name} size={22} />
                   </div>
                   <span className="font-mono text-xs text-tactical-green">{social.members} Followers</span>
                 </div>

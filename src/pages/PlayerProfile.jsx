@@ -3,11 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import LoadingScreen from '../components/ui/LoadingScreen';
+import SocialIcon from '../components/ui/SocialIcon';
 import { 
-  Facebook, 
-  Youtube, 
-  Music, 
-  Instagram, 
   Trophy, 
   Target, 
   Swords, 
@@ -101,7 +98,7 @@ export default function PlayerProfile() {
         {/* Breadcrumb */}
         <Link to="/team" className="inline-flex items-center gap-3 font-mono text-[10px] text-steel hover:text-silver tracking-[0.2em] uppercase mb-16 transition-all group">
           <div className="w-8 h-px bg-steel/30 group-hover:w-12 group-hover:bg-silver transition-all" />
-          <ArrowLeft size={12} /> The Roster
+          <ArrowLeft size={12} /> The Roster's
         </Link>
 
         {/* Hero Header */}
@@ -174,22 +171,21 @@ export default function PlayerProfile() {
 
             <div className="flex gap-4">
               {[
-                { icon: Facebook, url: player.facebook_url },
-                { icon: Instagram, url: player.instagram_url },
-                { icon: Youtube, url: player.youtube_url },
-                { icon: Music, url: player.tiktok_url },
+                { name: 'Facebook', url: player.facebook_url },
+                { name: 'YouTube', url: player.youtube_url },
+                { name: 'TikTok', url: player.tiktok_url },
               ].map((social, i) => social.url && (
                 <a 
                   key={i}
                   href={social.url} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="p-4 bg-white/5 hover:bg-silver hover:text-obsidian micro-border transition-all duration-300"
+                  className="p-4 bg-white/5 hover:bg-silver hover:text-obsidian micro-border transition-all duration-300 flex items-center justify-center min-h-0"
                 >
-                  <social.icon size={20} />
+                  <SocialIcon platform={social.name} size={20} />
                 </a>
               ))}
-              <button className="p-4 bg-white/5 hover:bg-white/10 micro-border text-steel transition-all">
+              <button className="p-4 bg-white/5 hover:bg-white/10 micro-border text-steel transition-all flex items-center justify-center min-h-0">
                 <Share2 size={20} />
               </button>
             </div>

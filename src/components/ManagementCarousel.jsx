@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useAnimationControls } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
-import { Facebook, Disc as Discord, Youtube, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import SocialIcon from './ui/SocialIcon';
 
 const ManagementCard = ({ member }) => (
   <div className="w-[300px] flex-shrink-0 group">
@@ -44,22 +45,22 @@ const ManagementCard = ({ member }) => (
         {/* Socials */}
         <div className="flex items-center justify-center gap-3 mt-auto pt-6 border-t border-white/5">
           {member.facebook_url && (
-            <a href={member.facebook_url} target="_blank" rel="noopener noreferrer" className="p-2 text-steel hover:text-red-600 transition-colors">
-              <Facebook size={16} />
+            <a href={member.facebook_url} target="_blank" rel="noopener noreferrer" className="p-2 text-steel hover:text-red-600 transition-colors flex items-center justify-center min-h-0">
+              <SocialIcon platform="Facebook" size={16} />
             </a>
           )}
           {member.discord_url && (
-            <a href={member.discord_url} target="_blank" rel="noopener noreferrer" className="p-2 text-steel hover:text-red-600 transition-colors">
-              <Discord size={16} />
+            <a href={member.discord_url} target="_blank" rel="noopener noreferrer" className="p-2 text-steel hover:text-red-600 transition-colors flex items-center justify-center min-h-0">
+              <SocialIcon platform="Discord" size={16} />
             </a>
           )}
           {member.youtube_url && (
-            <a href={member.youtube_url} target="_blank" rel="noopener noreferrer" className="p-2 text-steel hover:text-red-600 transition-colors">
-              <Youtube size={16} />
+            <a href={member.youtube_url} target="_blank" rel="noopener noreferrer" className="p-2 text-steel hover:text-red-600 transition-colors flex items-center justify-center min-h-0">
+              <SocialIcon platform="YouTube" size={16} />
             </a>
           )}
           {member.custom_url && (
-            <a href={member.custom_url} target="_blank" rel="noopener noreferrer" className="p-2 text-steel hover:text-red-600 transition-colors">
+            <a href={member.custom_url} target="_blank" rel="noopener noreferrer" className="p-2 text-steel hover:text-red-600 transition-colors flex items-center justify-center min-h-0">
               <ExternalLink size={16} />
             </a>
           )}
