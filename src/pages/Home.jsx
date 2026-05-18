@@ -16,12 +16,16 @@ export default function Home() {
       transition={{ duration: 0.4 }}
     >
       <HeroSection />
-      <FeaturedPlayers />
-      <UpcomingTournaments />
-      <AchievementsPreview />
-      <EarningsPreview />
-      <SponsorsSection />
-      <DiscordSection />
+      
+      {/* Wrapper to cover the global fixed background with the default matte black color */}
+      <div className="relative z-10 bg-obsidian">
+        <FeaturedPlayers />
+        <UpcomingTournaments />
+        <AchievementsPreview />
+        <EarningsPreview />
+        <SponsorsSection />
+        <DiscordSection />
+      </div>
     </motion.div>
   );
 }
