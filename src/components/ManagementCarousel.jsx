@@ -88,7 +88,7 @@ export default function ManagementCarousel() {
   const displayMembers = [...members, ...members, ...members, ...members];
 
   return (
-    <div className="py-15 overflow-hidden bg-transparent relative">
+    <div className="py-15 overflow-hidden bg-obsidian relative">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16 mb-10 text-center">
         <motion.p 
           initial={{ opacity: 0, y: 10 }}
@@ -124,7 +124,7 @@ export default function ManagementCarousel() {
         onMouseEnter={() => controls.stop()}
         onMouseLeave={() => controls.start({
           x: "-33.33%",
-          transition: { duration: 30, ease: "linear", repeat: Infinity }
+          transition: { duration: 18, ease: "linear", repeat: Infinity }
         })}
       >
         <motion.div
@@ -133,7 +133,7 @@ export default function ManagementCarousel() {
           onViewportEnter={() => {
             controls.start({
               x: "-33.33%",
-              transition: { duration: 30, ease: "linear", repeat: Infinity }
+              transition: { duration: 18, ease: "linear", repeat: Infinity }
             });
           }}
           className="flex gap-6 px-3"
@@ -143,6 +143,10 @@ export default function ManagementCarousel() {
             <ManagementCard key={`${member.id}-${i}`} member={member} />
           ))}
         </motion.div>
+
+        {/* Faders */}
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-obsidian to-transparent z-10" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-obsidian to-transparent z-10" />
       </div>
     </div>
   );

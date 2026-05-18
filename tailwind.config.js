@@ -49,6 +49,7 @@ module.exports = {
         steel: '#4A4A4A',
         'tactical-green': '#EF4444',
         'accent-red': '#EF4444',
+        'tactical-yellow': '#FFB800',
         chart: {
           '1': 'hsl(var(--chart-1))',
           '2': 'hsl(var(--chart-2))',

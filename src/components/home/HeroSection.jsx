@@ -15,7 +15,7 @@ export default function HeroSection() {
       {/* Hero background image */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none">
         <img
-          src="https://media.base44.com/images/public/6a06c41b0b0e28e4ac98d295/80c28ff99_c183eba8545abc233e07edce55dcfa1a.jpg"
+          src="src\assets\banner.jpg"
           alt=""
           className="w-full h-full object-cover"
           style={{ filter: 'brightness(0.35) saturate(0.6)' }}
@@ -55,7 +55,7 @@ export default function HeroSection() {
           className="font-mono text-xs text-steel tracking-ultra uppercase mb-8 flex items-center justify-center md:justify-start gap-3 w-full md:w-auto"
         >
           <span className="w-8 h-px bg-steel/50" />
-          Bangladesh Top 1 Esport Official
+          Bangladesh Top 1 Esports Official
         </motion.p>
  
         {/* Main heading */}
@@ -113,10 +113,10 @@ export default function HeroSection() {
           className="mt-20 pt-8 micro-border-t grid grid-cols-2 md:grid-cols-4 gap-5"
         >
           {[
-            { value: '20+', label: 'Tournaments' },
-            { value: '৳1.5L+', label: 'Prize' },
-            { value: '9+', label: 'Team Members' },
-            { value: '2025', label: 'Founded' },
+            { value: '200+', label: 'Tournaments' },
+            { value: '৳10.5L+', label: 'Prize' },
+            { value: '5+', label: 'Team Members' },
+            { value: '2023', label: 'Founded' },
           ].map(({ value, label }) => (
             <div key={label}>
               <p className="font-mono text-2xl text-silver font-semibold mb-1">{value}</p>

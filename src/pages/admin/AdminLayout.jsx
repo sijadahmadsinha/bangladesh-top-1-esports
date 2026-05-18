@@ -70,6 +70,7 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen flex">
+      <div className="site-bg" />
       {/* Desktop sidebar */}
       <div className="hidden lg:flex w-60 flex-shrink-0 bg-graphene micro-border-r flex-col fixed top-0 bottom-0 left-0 z-30">
         <SidebarContent />
