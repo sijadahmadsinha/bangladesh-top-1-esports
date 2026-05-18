@@ -31,9 +31,10 @@ export default function FeaturedPlayers() {
             viewport={{ once: true }}
             transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -4 }}
-            className="micro-border bg-graphene group cursor-pointer overflow-hidden"
+            className="micro-border bg-graphene group cursor-pointer overflow-hidden relative"
             data-cursor-expand
           >
+            <Link to={`/player/${p.id}`} className="absolute inset-0 z-10" aria-label={`View ${p.ign} profile`} />
             <div className="aspect-[3/4] overflow-hidden relative">
               {p.image_url ? (
                 <img
