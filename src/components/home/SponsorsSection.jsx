@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
+import logoImg from '@/assets/logo.svg';
 
 // হার্ডকোডেড স্পনসর লিস্ট - আপনি এখান থেকে সরাসরি ইমেজ পরিবর্তন করতে পারবেন
 const SPONSORS = [
-  { name: 'Sponsor 1', image: 'src/assets/logo.svg' }, // এখানে ইমেজের পাথ দিন, যেমন: '/src/assets/logo.svg'
-  { name: 'Sponsor 2', image: 'src/assets/logo.svg' },
-  { name: 'Sponsor 3', image: 'src/assets/logo.svg' },
-  { name: 'Sponsor 4', image: 'src/assets/logo.svg' },
-  { name: 'Sponsor 5', image: 'src/assets/logo.svg' },
-  { name: 'Sponsor 6', image: 'src/assets/logo.svg' },
-  { name: 'Sponsor 7', image: 'src/assets/logo.svg' },
-  { name: 'Sponsor 8', image: 'src/assets/logo.svg' },
+  { name: 'Sponsor 1', image: logoImg }, // এখানে ইমেজের পাথ দিন, যেমন: '/src/assets/logo.svg'
+  { name: 'Sponsor 2', image: logoImg },
+  { name: 'Sponsor 3', image: logoImg },
+  { name: 'Sponsor 4', image: logoImg },
+  { name: 'Sponsor 5', image: logoImg },
+  { name: 'Sponsor 6', image: logoImg },
+  { name: 'Sponsor 7', image: logoImg },
+  { name: 'Sponsor 8', image: logoImg },
 ];
 
 export default function SponsorsSection() {

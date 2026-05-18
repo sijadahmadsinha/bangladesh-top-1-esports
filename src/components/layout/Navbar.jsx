@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import logoImg from '@/assets/logo.svg';
 
 const NAV_LINKS = [
   { label: "Home", path: '/' },
@@ -48,7 +49,7 @@ export default function Navbar() {
         <div className="flex justify-center pt-3 pb-1">
           <Link to="/" className="min-h-0">
             <img
-              src="/src/assets/logo.svg"
+              src={logoImg}
               alt="TOP-1 Esports"
               className="h-16 w-auto"
             />
