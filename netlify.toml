@@ -1,3 +1,10 @@
+# Redirect all API requests to the Render backend. 
+[[redirects]]
+  from = "/api/*"
+  to = "https://bangladesh-top-1-esports.onrender.com/api/:splat"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -9,3 +16,4 @@
 
 [build.environment]
   CI = "false"
+
