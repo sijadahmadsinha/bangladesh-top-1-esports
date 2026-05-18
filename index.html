@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Bangladesh Top 1 Official</title>
     <meta name="description" content="TOP-1 is Bangladesh's premier Free Fire esports team. Follow our journey through tournaments, results, achievements, and more." />
     <meta name="theme-color" content="#070707" />
@@ -23,6 +23,45 @@
       body { background: #070707; }
       #root { min-height: 100vh; }
     </style>
+
+    <script>
+      // Disable pinch-to-zoom and keyboard zoom
+      document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '0' || e.key === '+')) {
+          e.preventDefault();
+        }
+      });
+      document.addEventListener('wheel', function (e) {
+        if (e.ctrlKey) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      // Disable Right Click context menu
+      document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+      });
+
+      // Disable F12, Ctrl+Shift+I/C/J, Ctrl+U, Ctrl+S
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'F12') {
+          e.preventDefault();
+          return false;
+        }
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'C' || e.key === 'c' || e.key === 'J' || e.key === 'j')) {
+          e.preventDefault();
+          return false;
+        }
+        if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+          e.preventDefault();
+          return false;
+        }
+        if (e.ctrlKey && (e.key === 'S' || e.key === 's')) {
+          e.preventDefault();
+          return false;
+        }
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
