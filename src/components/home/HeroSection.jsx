@@ -79,7 +79,7 @@ export default function HeroSection() {
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="font-heading text-muted-foreground text-xl md:text-2xl max-w-2xl mx-auto md:mx-0"
           >
-            Domination is not a goal. It is a standard.
+            Be The One
           </motion.p>
         </div>
  

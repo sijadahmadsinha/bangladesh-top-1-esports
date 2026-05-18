@@ -32,7 +32,7 @@ export default function UnofficialTournaments() {
               key={f}
               onClick={() => setFilter(f)}
               className={`font-mono text-xs px-4 py-2 tracking-widest uppercase transition-all min-h-0 ${
-                filter === f ? 'text-silver border-b border-silver' : 'text-steel hover:text-silver'
+                filter === f ? 'text-white border-b border-silver' : 'text-red-600 hover:text-white'
               }`}
             >
               {f}

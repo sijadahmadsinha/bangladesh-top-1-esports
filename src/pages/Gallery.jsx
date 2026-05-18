@@ -110,7 +110,7 @@ export default function Gallery() {
               key={f}
               onClick={() => setFilter(f)}
               className={`font-mono text-xs px-3 py-2 tracking-widest uppercase transition-all min-h-0 border ${
-                filter === f ? 'border-silver/30 text-silver bg-silver/5' : 'border-transparent text-steel hover:text-silver'
+                filter === f ? 'border-silver/30 text-white bg-silver/5' : 'border-transparent text-red-600 hover:text-white'
               }`}
             >
               {f}
