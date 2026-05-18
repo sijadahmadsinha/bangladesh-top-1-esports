@@ -69,8 +69,7 @@ export default function AdminLayout() {
   );
 
   return (
-    <div className="min-h-screen flex">
-      <div className="site-bg" />
+    <div className="min-h-screen flex bg-obsidian text-silver relative z-10 w-full">
       {/* Desktop sidebar */}
       <div className="hidden lg:flex w-60 flex-shrink-0 bg-graphene micro-border-r flex-col fixed top-0 bottom-0 left-0 z-30">
         <SidebarContent />
