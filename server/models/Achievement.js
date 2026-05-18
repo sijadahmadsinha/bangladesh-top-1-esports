@@ -5,7 +5,7 @@ const AchievementSchema = new mongoose.Schema({
   tournament_name: { type: String },
   image_url: { type: String },
   date: { type: String },
-  placement: { type: String, required: true, default: "1st Place", enum: ["1st Place","2nd Place","3rd Place","MVP","Top 5","Special Award"] },
+  placement: { type: String, required: true, default: "1st Place" },
   prize_amount: { type: String },
   description: { type: String },
 }, { timestamps: true });

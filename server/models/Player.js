@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const PlayerSchema = new mongoose.Schema({
   ign: { type: String, required: true },
   real_name: { type: String },
-  role: { type: String, required: true, default: "Rusher", enum: ["IGL","Rusher","Sniper","Support","All-rounder","Coach","Manager","Rifler"] },
+  role: { type: String, required: true, default: "Rusher", enum: ["IGL","Rusher","Sniper","Support","Bomber","All-rounder","Coach","Manager","Rifler"] },
   country: { type: String, default: "Bangladesh" },
   image_url: { type: String },
   bio: { type: String },
