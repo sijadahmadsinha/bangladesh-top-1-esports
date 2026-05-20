@@ -25,6 +25,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -35,7 +36,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => { setOpen(false); }, [location.pathname]);
+  useEffect(() => { 
+    setOpen(false); 
+    setMobileDropdownOpen(false);
+  }, [location.pathname]);
 
   return (
     <>
@@ -144,21 +148,39 @@ export default function Navbar() {
                   className="w-full max-w-xs"
                 >
                   {link.submenu ? (
-                    <div className="flex flex-col items-center gap-2">
-                      <span className="text-silver/40 text-[10px] uppercase tracking-widest mb-1">{link.label}</span>
-                      {link.submenu.map((sub) => (
-                        <Link
-                          key={sub.path}
-                          to={sub.path}
-                          className={`w-full block text-center py-2 font-heading text-sm tracking-widest uppercase transition-colors ${
-                            location.pathname === sub.path
-                              ? 'text-red-600'
-                              : 'text-silver hover:text-red-600'
-                          }`}
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
+                    <div className="flex flex-col items-center w-full relative">
+                      <button 
+                        onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+                        className={`flex items-center justify-center gap-2 py-3 font-heading text-base tracking-widest uppercase transition-colors w-full ${
+                          mobileDropdownOpen ? 'text-red-600' : 'text-silver hover:text-white'
+                        }`}
+                      >
+                        {link.label}
+                        <ChevronDown size={16} className={`transition-transform duration-300 ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      <AnimatePresence>
+                        {mobileDropdownOpen && (
+                          <motion.div 
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2, ease: "easeInOut" }}
+                            className="w-full overflow-hidden"
+                          >
+                            <div className="bg-red-600 flex flex-col items-center py-2 mt-1 shadow-lg">
+                              {link.submenu.map((sub) => (
+                                <Link
+                                  key={sub.path}
+                                  to={sub.path}
+                                  className="w-full block text-center py-3 font-heading text-sm tracking-widest uppercase text-white hover:bg-black/10 transition-colors"
+                                >
+                                  {sub.label}
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   ) : (
                     <Link
