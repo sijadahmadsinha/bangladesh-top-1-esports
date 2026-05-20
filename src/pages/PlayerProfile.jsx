@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import LoadingScreen from '../components/ui/LoadingScreen';
 import SocialIcon from '../components/ui/SocialIcon';
-import { formatDate } from '@/utils';
+import { formatDate, optimizeImageUrl } from '@/utils';
 import { 
   Trophy, 
   Target, 
@@ -85,7 +85,7 @@ export default function PlayerProfile() {
           <div 
             className="absolute inset-0 opacity-[0.03] blur-3xl scale-110"
             style={{ 
-              backgroundImage: `url(${player.image_url})`,
+              backgroundImage: `url(${optimizeImageUrl(player.image_url)})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center'
             }}
@@ -113,7 +113,7 @@ export default function PlayerProfile() {
             <div className="aspect-[4/5] relative overflow-hidden micro-border bg-graphene shadow-2xl">
               {player.image_url ? (
                 <img 
-                  src={player.image_url} 
+                  src={optimizeImageUrl(player.image_url)} 
                   alt={player.ign} 
                   className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
                 />

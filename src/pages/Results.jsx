@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import SectionHeader from '../components/ui/SectionHeader';
 import LoadingScreen from '../components/ui/LoadingScreen';
 import { X, ZoomIn } from 'lucide-react';
-import { formatDate } from '@/utils';
+import { formatDate, optimizeImageUrl } from '@/utils';
 
 function ImagePreview({ src, alt, onClose }) {
   useEffect(() => {
@@ -25,7 +25,7 @@ function ImagePreview({ src, alt, onClose }) {
         initial={{ scale: 0.9 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0.9 }}
-        src={src}
+        src={optimizeImageUrl(src)}
         alt={alt}
         className="max-w-full max-h-full object-contain"
         onClick={e => e.stopPropagation()}
@@ -51,7 +51,7 @@ function ImageThumb({ src, label }) {
         className="relative group aspect-video overflow-hidden bg-graphene micro-border min-h-0 w-full"
         data-cursor-expand
       >
-        <img src={src} alt={label} className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" loading="lazy" />
+        <img src={optimizeImageUrl(src)} alt={label} className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" loading="lazy" />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
           <ZoomIn size={24} className="text-white" />
         </div>
@@ -77,7 +77,7 @@ function ResultCard({ result, index }) {
       <div className="p-5 border-b border-silver/5 flex items-center justify-between">
         <div className="flex items-center gap-4">
           {result.banner_url && (
-            <img src={result.banner_url} alt="" className="w-10 h-10 object-cover opacity-80" loading="lazy" />
+            <img src={optimizeImageUrl(result.banner_url)} alt="" className="w-10 h-10 object-cover opacity-80" loading="lazy" />
           )}
           <div>
             <p className="font-heading font-semibold text-silver">{result.tournament_name}</p>

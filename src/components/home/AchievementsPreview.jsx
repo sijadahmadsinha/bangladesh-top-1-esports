@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { formatDate } from '@/utils';
+import { formatDate, optimizeImageUrl } from '@/utils';
 import SectionHeader from '../ui/SectionHeader';
 import PlacementBadge from '../ui/PlacementBadge';
 import { Trophy } from 'lucide-react';
@@ -37,7 +37,7 @@ export default function AchievementsPreview() {
           >
             <div className="flex items-start gap-4">
               {a.image_url ? (
-                <img src={a.image_url} alt="" className="w-12 h-12 object-cover opacity-80" />
+                <img src={optimizeImageUrl(a.image_url)} alt="" className="w-12 h-12 object-cover opacity-80" />
               ) : (
                 <div className="w-12 h-12 bg-silver/5 flex items-center justify-center border border-silver/10">
                   <Trophy size={20} className="text-steel" />

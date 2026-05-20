@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import SectionHeader from '../components/ui/SectionHeader';
 import LoadingScreen from '../components/ui/LoadingScreen';
 import { Trophy } from 'lucide-react';
-import { formatDate } from '@/utils';
+import { formatDate, optimizeImageUrl } from '@/utils';
 
 function AchievementCard({ achievement, index }) {
   return (
@@ -21,7 +21,7 @@ function AchievementCard({ achievement, index }) {
       <div className="aspect-video relative overflow-hidden">
         {achievement.image_url ? (
           <img
-            src={achievement.image_url}
+            src={optimizeImageUrl(achievement.image_url)}
             alt={achievement.title}
             className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
             loading="lazy"

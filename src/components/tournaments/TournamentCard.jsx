@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CalendarDays, Clock, ChevronDown, User } from 'lucide-react';
 import StatusBadge from '../ui/StatusBadge';
-import { getEmbedUrl, formatDate } from '@/utils';
+import { getEmbedUrl, formatDate, optimizeImageUrl } from '@/utils';
 
-export default function TournamentCard({ tournament, index }) {
+const TournamentCard = memo(function TournamentCard({ tournament, index }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -24,7 +24,7 @@ export default function TournamentCard({ tournament, index }) {
         <div className="flex items-center gap-4">
           {tournament.banner_url && (
             <img
-              src={tournament.banner_url}
+              src={optimizeImageUrl(tournament.banner_url)}
               alt=""
               className="w-12 h-12 object-cover opacity-80 group-hover:opacity-100 transition-all flex-shrink-0"
               loading="lazy"
@@ -102,4 +102,6 @@ export default function TournamentCard({ tournament, index }) {
       </AnimatePresence>
     </motion.div>
   );
-}
+});
+
+export default TournamentCard;

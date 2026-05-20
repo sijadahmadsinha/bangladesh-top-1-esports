@@ -5,6 +5,7 @@ import { base44 } from '@/api/base44Client';
 import SectionHeader from '../components/ui/SectionHeader';
 import LoadingScreen from '../components/ui/LoadingScreen';
 import SocialIcon from '../components/ui/SocialIcon';
+import { optimizeImageUrl } from '@/utils';
 
 function PlayerCard({ player, index }) {
   const kdRatio = player.matches_played > 0 ? (player.kills / player.matches_played).toFixed(1) : '0.0';
@@ -26,7 +27,7 @@ function PlayerCard({ player, index }) {
         <div className="sm:w-48 aspect-[3/4] sm:aspect-auto relative overflow-hidden flex-shrink-0">
           {player.image_url ? (
             <img
-              src={player.image_url}
+              src={optimizeImageUrl(player.image_url)}
               alt={player.ign}
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
               loading="lazy"

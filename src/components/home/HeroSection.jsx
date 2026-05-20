@@ -15,7 +15,7 @@ export default function HeroSection() {
       {/* Hero background image */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none">
         <img
-          src="src\assets\banner.jpg"
+          src="/src/assets/banner.webp"
           alt=""
           className="w-full h-full object-cover"
           style={{ filter: 'brightness(0.35) saturate(0.6)' }}

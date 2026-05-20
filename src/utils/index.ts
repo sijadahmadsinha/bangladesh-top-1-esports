@@ -49,3 +49,14 @@ export function formatDate(dateStr: string): string {
   }
   return dateStr;
 }
+
+export function optimizeImageUrl(url: string): string {
+  if (!url) return '';
+  if (url.includes('res.cloudinary.com')) {
+    // Replace '/image/upload/' with '/image/upload/f_auto,q_auto/' if not already present
+    if (!url.includes('/f_auto,q_auto/')) {
+      return url.replace('/image/upload/', '/image/upload/f_auto,q_auto/');
+    }
+  }
+  return url;
+}

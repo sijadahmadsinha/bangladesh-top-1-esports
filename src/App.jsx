@@ -6,35 +6,46 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 
-// Layout
+import React, { Suspense, lazy } from 'react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ParticleBackground from './components/layout/ParticleBackground';
 import CustomCursor from './components/layout/CustomCursor';
 import ScrollToTop from './components/layout/ScrollToTop';
 
-// Pages
+// Keep critical landing page eager
 import Home from './pages/Home';
-import Team from './pages/Team';
-import OfficialTournaments from './pages/OfficialTournaments';
-import UnofficialTournaments from './pages/UnofficialTournaments';
-import Results from './pages/Results';
-import Achievements from './pages/Achievements';
-import Earnings from './pages/Earnings';
-import Gallery from './pages/Gallery';
-import Community from './pages/Community';
-import PlayerProfile from './pages/PlayerProfile';
 
-// Admin
-import AdminLayout from './pages/admin/AdminLayout';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminPlayers from './pages/admin/AdminPlayers';
-import AdminTournaments from './pages/admin/AdminTournaments';
-import AdminResults from './pages/admin/AdminResults';
-import AdminAchievements from './pages/admin/AdminAchievements';
-import AdminEarnings from './pages/admin/AdminEarnings';
-import AdminGallery from './pages/admin/AdminGallery';
-import AdminManagement from './pages/admin/AdminManagement';
+// Lazy load all other pages
+const Team = lazy(() => import('./pages/Team'));
+const OfficialTournaments = lazy(() => import('./pages/OfficialTournaments'));
+const UnofficialTournaments = lazy(() => import('./pages/UnofficialTournaments'));
+const Results = lazy(() => import('./pages/Results'));
+const Achievements = lazy(() => import('./pages/Achievements'));
+const Earnings = lazy(() => import('./pages/Earnings'));
+const Gallery = lazy(() => import('./pages/Gallery'));
+const Community = lazy(() => import('./pages/Community'));
+const PlayerProfile = lazy(() => import('./pages/PlayerProfile'));
+
+// Lazy load Admin pages
+const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+const AdminPlayers = lazy(() => import('./pages/admin/AdminPlayers'));
+const AdminTournaments = lazy(() => import('./pages/admin/AdminTournaments'));
+const AdminResults = lazy(() => import('./pages/admin/AdminResults'));
+const AdminAchievements = lazy(() => import('./pages/admin/AdminAchievements'));
+const AdminEarnings = lazy(() => import('./pages/admin/AdminEarnings'));
+const AdminGallery = lazy(() => import('./pages/admin/AdminGallery'));
+const AdminManagement = lazy(() => import('./pages/admin/AdminManagement'));
+
+const PageLoader = () => (
+  <div className="fixed inset-0 flex items-center justify-center bg-obsidian z-[9999]">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-8 h-8 border border-silver/20 border-t-silver/80 rounded-full animate-spin" />
+      <p className="font-mono text-xs text-steel tracking-ultra">TOP-1</p>
+    </div>
+  </div>
+);
 
 const PublicLayout = ({ children }) => (
   <>
@@ -65,36 +76,38 @@ const AuthenticatedApp = () => {
   return (
     <>
       <CustomCursor />
-      <Routes>
-      {/* Public routes */}
-      <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
-      <Route path="/team" element={<PublicLayout><Team /></PublicLayout>} />
-      <Route path="/player/:id" element={<PublicLayout><PlayerProfile /></PublicLayout>} />
-      <Route path="/official-tournaments" element={<PublicLayout><OfficialTournaments /></PublicLayout>} />
-      <Route path="/unofficial-tournaments" element={<PublicLayout><UnofficialTournaments /></PublicLayout>} />
-      <Route path="/results" element={<PublicLayout><Results /></PublicLayout>} />
-      <Route path="/achievements" element={<PublicLayout><Achievements /></PublicLayout>} />
-      <Route path="/earnings" element={<PublicLayout><Earnings /></PublicLayout>} />
-      <Route path="/gallery" element={<PublicLayout><Gallery /></PublicLayout>} />
-      <Route path="/community" element={<PublicLayout><Community /></PublicLayout>} />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          {/* Public routes */}
+          <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
+          <Route path="/team" element={<PublicLayout><Team /></PublicLayout>} />
+          <Route path="/player/:id" element={<PublicLayout><PlayerProfile /></PublicLayout>} />
+          <Route path="/official-tournaments" element={<PublicLayout><OfficialTournaments /></PublicLayout>} />
+          <Route path="/unofficial-tournaments" element={<PublicLayout><UnofficialTournaments /></PublicLayout>} />
+          <Route path="/results" element={<PublicLayout><Results /></PublicLayout>} />
+          <Route path="/achievements" element={<PublicLayout><Achievements /></PublicLayout>} />
+          <Route path="/earnings" element={<PublicLayout><Earnings /></PublicLayout>} />
+          <Route path="/gallery" element={<PublicLayout><Gallery /></PublicLayout>} />
+          <Route path="/community" element={<PublicLayout><Community /></PublicLayout>} />
 
-      {/* Auth route */}
-      <Route path="/login" element={<Navigate to="/top-1website#author-adminbangladesh$top1" replace />} />
+          {/* Auth route */}
+          <Route path="/login" element={<Navigate to="/top-1website#author-adminbangladesh$top1" replace />} />
 
-      {/* Admin routes */}
-      <Route path="/top-1website" element={<AdminLayout />}>
-        <Route index element={<AdminDashboard />} />
-        <Route path="players" element={<AdminPlayers />} />
-        <Route path="tournaments" element={<AdminTournaments />} />
-        <Route path="results" element={<AdminResults />} />
-        <Route path="achievements" element={<AdminAchievements />} />
-        <Route path="earnings" element={<AdminEarnings />} />
-        <Route path="gallery" element={<AdminGallery />} />
-        <Route path="management" element={<AdminManagement />} />
-      </Route>
+          {/* Admin routes */}
+          <Route path="/top-1website" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="players" element={<AdminPlayers />} />
+            <Route path="tournaments" element={<AdminTournaments />} />
+            <Route path="results" element={<AdminResults />} />
+            <Route path="achievements" element={<AdminAchievements />} />
+            <Route path="earnings" element={<AdminEarnings />} />
+            <Route path="gallery" element={<AdminGallery />} />
+            <Route path="management" element={<AdminManagement />} />
+          </Route>
 
-      <Route path="*" element={<PublicLayout><PageNotFound /></PublicLayout>} />
-    </Routes>
+          <Route path="*" element={<PublicLayout><PageNotFound /></PublicLayout>} />
+        </Routes>
+      </Suspense>
     </>
   );
 };

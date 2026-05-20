@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
 import SectionHeader from '../ui/SectionHeader';
+import { optimizeImageUrl } from '@/utils';
 
 export default function FeaturedPlayers() {
   const [players, setPlayers] = useState([]);
@@ -38,7 +39,7 @@ export default function FeaturedPlayers() {
             <div className="aspect-[3/4] overflow-hidden relative">
               {p.image_url ? (
                 <img
-                  src={p.image_url}
+                  src={optimizeImageUrl(p.image_url)}
                   alt={p.ign}
                   className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
                   loading="lazy"
