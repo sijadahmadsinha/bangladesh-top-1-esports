@@ -120,13 +120,13 @@ export default function Community() {
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-xs text-steel tracking-ultra uppercase w-24">Email</span>
                   <a href="mailto:contact@top1esports.gg" className="font-body text-sm text-silver hover:text-silver/70 transition-colors min-h-0">
-                    contact@top1esports.gg
+                     raadvaiytbusiness@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="font-mono text-xs text-steel tracking-ultra uppercase w-24">Discord</span>
-                  <a href="https://discord.gg/top1esports" className="font-body text-sm text-silver hover:text-silver/70 transition-colors min-h-0">
-                    discord.gg/top1esports
+                  <a href="#" className="font-body text-sm text-silver hover:text-silver/70 transition-colors min-h-0">
+                    Upcomming
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
@@ -139,19 +139,19 @@ export default function Community() {
             {/* Join team callout */}
             <div className="flex flex-col justify-between">
               <div>
-                <p className="font-mono text-xs text-steel tracking-ultra uppercase mb-4">Open Tryouts</p>
-                <h3 className="font-heading text-2xl font-semibold text-silver mb-3">Want to Join TOP-1?</h3>
+                <p className="font-mono text-xs text-steel tracking-ultra uppercase mb-4">Stay Updated</p>
+                <h3 className="font-heading text-2xl font-semibold text-silver mb-3">Join Our Community</h3>
                 <p className="font-body text-muted-foreground text-sm leading-relaxed mb-6">
-                  We're always looking for talented players. If you believe you have what it takes to compete at the highest level, apply through our Discord.
+                  Follow us on social media and be the first to know about match announcements, player signings, and exclusive content.
                 </p>
               </div>
               <a
-                href="https://discord.gg/top1esports"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-silver text-obsidian px-6 py-3 font-heading font-semibold text-sm tracking-widest uppercase hover:bg-silver/90 transition-all group min-h-0 w-fit"
               >
-                Apply Now
+                Follow Us
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
