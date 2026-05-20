@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
+import { formatDate } from '@/utils';
 import SectionHeader from '../ui/SectionHeader';
 import PlacementBadge from '../ui/PlacementBadge';
 import { Trophy } from 'lucide-react';
@@ -47,7 +48,7 @@ export default function AchievementsPreview() {
                 <p className="font-body text-xs text-muted-foreground mt-0.5 truncate">{a.tournament_name}</p>
                 <div className="flex items-center gap-3 mt-2">
                   {a.placement && <PlacementBadge placement={a.placement} />}
-                  {a.date && <span className="font-mono text-xs text-steel">{a.date}</span>}
+                  {a.date && <span className="font-mono text-xs text-steel">{formatDate(a.date)}</span>}
                 </div>
               </div>
             </div>

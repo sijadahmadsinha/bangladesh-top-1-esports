@@ -114,7 +114,7 @@ export default function HeroSection() {
         >
           {[
             { value: '200+', label: 'Tournaments' },
-            { value: '৳10.5L+', label: 'Prize' },
+            { value: '$10K+', label: 'Prize' },
             { value: '5+', label: 'Team Members' },
             { value: '2023', label: 'Founded' },
           ].map(({ value, label }) => (

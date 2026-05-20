@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Pencil, Trash2, X, Check, Upload } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import LoadingScreen from '../ui/LoadingScreen';
+import { formatDate } from '@/utils';
 
 function Field({ field, name, value, onChange }) {
   const baseClass = "w-full bg-obsidian border border-silver/10 text-silver font-body text-sm px-3 py-2.5 focus:border-silver/30 focus:outline-none transition-colors placeholder-steel";
@@ -17,7 +18,18 @@ function Field({ field, name, value, onChange }) {
   }
 
   if (field.format === 'date') {
-    return <input type="date" value={value || ''} onChange={e => onChange(e.target.value)} className={baseClass} />;
+    return (
+      <div className="space-y-1">
+        <input 
+          type="text" 
+          value={value || ''} 
+          onChange={e => onChange(e.target.value)} 
+          placeholder="DD/MM/YYYY" 
+          className={baseClass} 
+        />
+        <p className="font-mono text-[10px] text-steel">Use Day/Month/Year format (e.g. 20/05/2026)</p>
+      </div>
+    );
   }
 
   if (field.type === 'boolean') {
@@ -102,26 +114,52 @@ export default function EntityManager({ entityName, entity, fields, title, rende
   useEffect(() => { load(); }, []);
 
   const openCreate = () => { setEditing(null); setForm({}); setShowForm(true); };
-  const openEdit = (item) => { setEditing(item); setForm({ ...item }); setShowForm(true); };
+  const openEdit = (item) => { 
+    setEditing(item); 
+    const formattedForm = { ...item };
+    fields.forEach(([name, field]) => {
+      if (field.format === 'date' && formattedForm[name]) {
+        formattedForm[name] = formatDate(formattedForm[name]);
+      }
+    });
+    setForm(formattedForm); 
+    setShowForm(true); 
+  };
 
   const handleSave = async () => {
     setSaving(true);
-    if (editing) {
-      await entity.update(editing.id, form);
-    } else {
-      await entity.create(form);
+    try {
+      if (editing) {
+        await entity.update(editing.id || editing._id, form);
+      } else {
+        await entity.create(form);
+      }
+      await load();
+      setShowForm(false);
+    } catch (err) {
+      console.error('Save failed:', err);
+      alert('Save failed: ' + (err.response?.data?.error || err.message));
+    } finally {
+      setSaving(false);
     }
-    await load();
-    setShowForm(false);
-    setSaving(false);
   };
 
   const handleDelete = async (id) => {
+    if (!id) {
+      console.error('handleDelete called without a valid ID');
+      return;
+    }
     if (!window.confirm('Delete this item?')) return;
     setDeletingId(id);
-    await entity.delete(id);
-    setItems(prev => prev.filter(i => i.id !== id));
-    setDeletingId(null);
+    try {
+      await entity.delete(id);
+      setItems(prev => prev.filter(i => i.id !== id && i._id !== id));
+    } catch (err) {
+      console.error('Delete failed:', err);
+      alert('Delete failed: ' + (err.response?.data?.error || err.message));
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   return (
@@ -149,24 +187,27 @@ export default function EntityManager({ entityName, entity, fields, title, rende
           </div>
         ) : (
           <div className="space-y-px">
-            {items.map((item) => (
-              <div key={item.id} className="flex items-center justify-between p-4 bg-graphene micro-border group hover:bg-white/5 transition-colors">
-                <div className="flex-1 min-w-0">
-                  {renderRow ? renderRow(item) : (
-                    <p className="font-heading text-sm text-silver truncate">{item.name || item.title || item.ign || item.tournament_name || item.key || item.id}</p>
-                  )}
+            {items.map((item) => {
+              const itemId = item.id || item._id;
+              return (
+                <div key={itemId} className="flex items-center justify-between p-4 bg-graphene micro-border group hover:bg-white/5 transition-colors">
+                  <div className="flex-1 min-w-0">
+                    {renderRow ? renderRow(item) : (
+                      <p className="font-heading text-sm text-silver truncate">{item.name || item.title || item.ign || item.tournament_name || item.key || itemId}</p>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+                    <button onClick={() => openEdit(item)} className="p-2 text-steel hover:text-silver transition-colors min-h-0">
+                      <Pencil size={14} />
+                    </button>
+                    <button onClick={() => handleDelete(itemId)} disabled={deletingId === itemId}
+                      className="p-2 text-steel hover:text-destructive transition-colors min-h-0">
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 ml-4 flex-shrink-0">
-                  <button onClick={() => openEdit(item)} className="p-2 text-steel hover:text-silver transition-colors min-h-0">
-                    <Pencil size={14} />
-                  </button>
-                  <button onClick={() => handleDelete(item.id)} disabled={deletingId === item.id}
-                    className="p-2 text-steel hover:text-destructive transition-colors min-h-0">
-                    <Trash2 size={14} />
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )
       )}

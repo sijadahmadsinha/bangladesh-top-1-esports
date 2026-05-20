@@ -22,7 +22,7 @@ function Counter({ target }) {
     requestAnimationFrame(step);
   }, [inView, target]);
 
-  return <span ref={ref}>{count.toLocaleString('en-BD')}</span>;
+  return <span ref={ref}>{count.toLocaleString('en-US')}</span>;
 }
 
 export default function EarningsPreview() {
@@ -42,7 +42,7 @@ export default function EarningsPreview() {
         <div>
           <p className="font-mono text-xs text-steel tracking-ultra uppercase mb-6">Total Prize Earnings</p>
           <div className="mb-3">
-            <span className="font-mono text-steel text-2xl">৳</span>
+            <span className="font-mono text-steel text-2xl">$</span>
             <span
               className="font-mono text-silver font-bold"
               style={{ fontSize: 'clamp(48px, 8vw, 96px)' }}
@@ -71,7 +71,7 @@ export default function EarningsPreview() {
                 <p className="font-heading text-sm text-silver">{e.tournament_name}</p>
                 {e.placement && <p className="font-mono text-xs text-steel mt-0.5">{e.placement}</p>}
               </div>
-              <p className="font-mono text-silver font-semibold">৳{e.amount?.toLocaleString('en-BD')}</p>
+              <p className="font-mono text-silver font-semibold">${e.amount?.toLocaleString('en-US')}</p>
             </motion.div>
           ))}
         </div>

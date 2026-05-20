@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import SectionHeader from '../components/ui/SectionHeader';
 import LoadingScreen from '../components/ui/LoadingScreen';
+import { formatDate } from '@/utils';
 
 function AnimatedNumber({ value }) {
   const [display, setDisplay] = useState(0);
@@ -23,7 +24,7 @@ function AnimatedNumber({ value }) {
     requestAnimationFrame(step);
   }, [inView, value]);
 
-  return <span ref={ref}>{display.toLocaleString('en-BD')}</span>;
+  return <span ref={ref}>{display.toLocaleString('en-US')}</span>;
 }
 
 export default function Earnings() {
@@ -45,7 +46,7 @@ export default function Earnings() {
         <SectionHeader
           label="Prize History"
           title="Earnings"
-          subtitle="Financial proof of competitive dominance. Every BDT earned through skill and strategy."
+          subtitle="Financial proof of competitive dominance. Every USD earned through skill and strategy."
         />
 
         {loading ? <LoadingScreen /> : (
@@ -65,7 +66,7 @@ export default function Earnings() {
               <div className="relative z-10">
                 <p className="font-mono text-xs text-steel tracking-ultra uppercase mb-4">Total Prize Earnings</p>
                 <div className="flex items-baseline gap-2 mb-6">
-                  <span className="font-mono text-silver text-3xl md:text-4xl">৳</span>
+                  <span className="font-mono text-silver text-3xl md:text-4xl">$</span>
                   <span
                     className="font-mono text-silver font-bold earnings-counter"
                     style={{ fontSize: 'clamp(56px, 10vw, 120px)' }}
@@ -79,11 +80,11 @@ export default function Earnings() {
                     <p className="font-mono text-xs text-steel tracking-widest uppercase mt-1">Tournaments</p>
                   </div>
                   <div>
-                    <p className="font-mono text-2xl text-silver font-semibold">৳<AnimatedNumber value={avgPrize} /></p>
+                    <p className="font-mono text-2xl text-silver font-semibold">$<AnimatedNumber value={avgPrize} /></p>
                     <p className="font-mono text-xs text-steel tracking-widest uppercase mt-1">Average Prize</p>
                   </div>
                   <div>
-                    <p className="font-mono text-2xl text-silver font-semibold">৳<AnimatedNumber value={topPrize} /></p>
+                    <p className="font-mono text-2xl text-silver font-semibold">$<AnimatedNumber value={topPrize} /></p>
                     <p className="font-mono text-xs text-steel tracking-widest uppercase mt-1">Top Prize</p>
                   </div>
                 </div>
@@ -119,14 +120,14 @@ export default function Earnings() {
                           <p className="font-heading font-semibold text-silver">{e.tournament_name}</p>
                           <div className="flex items-center gap-4 mt-1">
                             {e.placement && <span className="font-mono text-xs text-muted-foreground">{e.placement}</span>}
-                            {e.date && <span className="font-mono text-xs text-steel">{e.date}</span>}
+                            {e.date && <span className="font-mono text-xs text-steel">{formatDate(e.date)}</span>}
                           </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-3 mt-3 sm:mt-0">
-                        <span className="font-mono text-xs text-steel">{e.currency || 'BDT'}</span>
+                        <span className="font-mono text-xs text-steel">{e.currency || 'USD'}</span>
                         <span className="font-mono text-xl text-silver font-semibold">
-                          ৳{(e.amount || 0).toLocaleString('en-BD')}
+                          ${(e.amount || 0).toLocaleString('en-US')}
                         </span>
                       </div>
                     </motion.div>
@@ -136,7 +137,7 @@ export default function Earnings() {
                 {/* Total footer */}
                 <div className="flex items-center justify-between p-5 bg-silver/5 micro-border mt-px">
                   <span className="font-mono text-xs text-steel tracking-ultra uppercase">Total</span>
-                  <span className="font-mono text-xl text-silver font-semibold">৳{total.toLocaleString('en-BD')}</span>
+                  <span className="font-mono text-xl text-silver font-semibold">${total.toLocaleString('en-US')}</span>
                 </div>
               </div>
             )}

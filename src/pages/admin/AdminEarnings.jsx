@@ -1,5 +1,6 @@
 import { base44 } from '@/api/base44Client';
 import EntityManager from '../../components/admin/EntityManager';
+import { formatDate } from '@/utils';
 
 const FIELDS = [
   ['tournament_name', { type: 'string' }],
@@ -21,9 +22,9 @@ export default function AdminEarnings() {
         <div className="flex items-center justify-between w-full pr-4">
           <div>
             <p className="font-heading text-sm text-silver">{item.tournament_name}</p>
-            <p className="font-mono text-xs text-steel">{item.placement} · {item.date}</p>
+            <p className="font-mono text-xs text-steel">{item.placement} · {formatDate(item.date)}</p>
           </div>
-          <p className="font-mono text-sm text-silver font-semibold">৳{(item.amount || 0).toLocaleString('en-BD')}</p>
+          <p className="font-mono text-sm text-silver font-semibold">${(item.amount || 0).toLocaleString('en-US')}</p>
         </div>
       )}
     />

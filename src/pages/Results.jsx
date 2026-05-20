@@ -4,6 +4,7 @@ import { base44 } from '@/api/base44Client';
 import SectionHeader from '../components/ui/SectionHeader';
 import LoadingScreen from '../components/ui/LoadingScreen';
 import { X, ZoomIn } from 'lucide-react';
+import { formatDate } from '@/utils';
 
 function ImagePreview({ src, alt, onClose }) {
   useEffect(() => {
@@ -82,7 +83,7 @@ function ResultCard({ result, index }) {
             <p className="font-heading font-semibold text-silver">{result.tournament_name}</p>
             <div className="flex items-center gap-4 mt-1">
               {result.placement && <span className="font-mono text-xs text-tactical-green">{result.placement}</span>}
-              {result.date && <span className="font-mono text-xs text-steel">{result.date}</span>}
+              {result.date && <span className="font-mono text-xs text-steel">{formatDate(result.date)}</span>}
             </div>
           </div>
         </div>

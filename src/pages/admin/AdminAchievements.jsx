@@ -1,6 +1,7 @@
 import { base44 } from '@/api/base44Client';
 import EntityManager from '../../components/admin/EntityManager';
 import PlacementBadge from '../../components/ui/PlacementBadge';
+import { formatDate } from '@/utils';
 
 const FIELDS = [
   ['title', { type: 'string' }],
@@ -26,6 +27,7 @@ export default function AdminAchievements() {
             <div className="flex items-center gap-3 mt-0.5">
               <p className="font-mono text-xs text-muted-foreground">{item.tournament_name}</p>
               {item.placement && <PlacementBadge placement={item.placement} />}
+              {item.date && <span className="font-mono text-xs text-steel">{formatDate(item.date)}</span>}
             </div>
           </div>
         </div>

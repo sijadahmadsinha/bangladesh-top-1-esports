@@ -1,6 +1,7 @@
 import { base44 } from '@/api/base44Client';
 import EntityManager from '../../components/admin/EntityManager';
 import StatusBadge from '../../components/ui/StatusBadge';
+import { formatDate } from '@/utils';
 
 const FIELDS = [
   ['name', { type: 'string' }],
@@ -30,7 +31,7 @@ export default function AdminTournaments() {
             <div className="flex items-center gap-4 mt-0.5">
               <span className="font-mono text-xs text-steel">{item.type}</span>
               <StatusBadge status={item.status} />
-              {item.date && <span className="font-mono text-xs text-steel">{item.date}</span>}
+              {item.date && <span className="font-mono text-xs text-steel">{formatDate(item.date)}</span>}
             </div>
           </div>
         </div>

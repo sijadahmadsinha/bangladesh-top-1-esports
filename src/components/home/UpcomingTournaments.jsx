@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
 import StatusBadge from '../ui/StatusBadge';
+import { formatDate } from '@/utils';
 import SectionHeader from '../ui/SectionHeader';
 import { CalendarDays, Clock } from 'lucide-react';
 
@@ -49,7 +50,7 @@ export default function UpcomingTournaments() {
               {t.date && (
                 <span className="flex items-center gap-2 font-mono text-xs text-steel">
                   <CalendarDays size={12} />
-                  {t.date}
+                  {formatDate(t.date)}
                 </span>
               )}
               {t.time && (

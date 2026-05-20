@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import LoadingScreen from '../components/ui/LoadingScreen';
 import SocialIcon from '../components/ui/SocialIcon';
+import { formatDate } from '@/utils';
 import { 
   Trophy, 
   Target, 
@@ -14,8 +15,7 @@ import {
   TrendingUp,
   Gamepad2,
   Share2,
-  Calendar,
-  MapPin
+  Calendar
 } from 'lucide-react';
 
 const StatCard = ({ icon: Icon, label, value, colorClass = "text-silver", delay = 0 }) => (
@@ -141,9 +141,6 @@ export default function PlayerProfile() {
             <div className="flex flex-wrap items-center gap-4 mb-8">
               <span className="px-4 py-1.5 bg-silver text-obsidian font-mono text-[10px] font-bold tracking-widest uppercase">
                 {player.role}
-              </span>
-              <span className="flex items-center gap-2 px-4 py-1.5 bg-white/5 micro-border font-mono text-[10px] text-steel tracking-ultra uppercase">
-                <MapPin size={10} /> {player.country || 'Bangladesh'}
               </span>
             </div>
             
@@ -271,7 +268,7 @@ export default function PlayerProfile() {
                              <span className="font-mono text-[9px] text-steel tracking-widest uppercase">{ach.event}</span>
                              {ach.date && (
                                <div className="flex items-center gap-1.5 font-mono text-[9px] text-steel/60">
-                                 <Calendar size={10} /> {ach.date}
+                                 <Calendar size={10} /> {formatDate(ach.date)}
                                </div>
                              )}
                           </div>

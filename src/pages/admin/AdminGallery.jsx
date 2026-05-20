@@ -1,5 +1,6 @@
 import { base44 } from '@/api/base44Client';
 import EntityManager from '../../components/admin/EntityManager';
+import { formatDate } from '@/utils';
 
 const FIELDS = [
   ['title', { type: 'string' }],
@@ -24,7 +25,7 @@ export default function AdminGallery() {
           )}
           <div>
             <p className="font-heading text-sm text-silver">{item.title || 'Untitled'}</p>
-            <p className="font-mono text-xs text-steel">{item.type} · {item.category}</p>
+            <p className="font-mono text-xs text-steel">{item.type} · {item.category}{item.date ? ` · ${formatDate(item.date)}` : ''}</p>
           </div>
         </div>
       )}

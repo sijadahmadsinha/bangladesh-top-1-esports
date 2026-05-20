@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CalendarDays, Clock, ChevronDown, User } from 'lucide-react';
 import StatusBadge from '../ui/StatusBadge';
+import { getEmbedUrl, formatDate } from '@/utils';
 
 export default function TournamentCard({ tournament, index }) {
   const [expanded, setExpanded] = useState(false);
@@ -42,7 +43,7 @@ export default function TournamentCard({ tournament, index }) {
         <div className="flex flex-wrap items-center gap-5">
           {tournament.date && (
             <span className="flex items-center gap-1.5 font-mono text-xs text-steel">
-              <CalendarDays size={12} /> {tournament.date}
+              <CalendarDays size={12} /> {formatDate(tournament.date)}
             </span>
           )}
           {tournament.time && (
@@ -80,7 +81,7 @@ export default function TournamentCard({ tournament, index }) {
                   <p className="font-mono text-xs text-steel tracking-ultra uppercase mb-3">Live Stream</p>
                   <div className="aspect-video w-full max-w-2xl">
                     <iframe
-                      src={tournament.youtube_link.replace('watch?v=', 'embed/')}
+                      src={getEmbedUrl(tournament.youtube_link)}
                       className="w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen

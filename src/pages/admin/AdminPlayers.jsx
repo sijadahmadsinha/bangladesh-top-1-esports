@@ -5,8 +5,6 @@ const FIELDS = [
   ['ign', { type: 'string' }],
   ['real_name', { type: 'string' }],
   ['role', { type: 'string', enum: ['IGL', 'Rusher', 'Sniper', 'Support', 'Bomber', 'All-rounder', 'Coach', 'Manager'] }],
-  ['country', { type: 'string' }],
-  ['jersey_number', { type: 'string' }],
   ['uid', { type: 'string' }],
   ['matches_played', { type: 'number' }],
   ['kills', { type: 'number' }],
@@ -34,7 +32,7 @@ export default function AdminPlayers() {
           {item.image_url && <img src={item.image_url} alt="" className="w-10 h-12 object-cover opacity-90 micro-border" />}
           <div>
             <p className="font-heading text-sm text-silver">{item.ign}</p>
-            <p className="font-mono text-[10px] text-steel tracking-ultra uppercase">{item.role} · {item.country}</p>
+            <p className="font-mono text-[10px] text-steel tracking-ultra uppercase">{item.role}</p>
             <div className="flex gap-2 mt-1">
                <span className="font-mono text-[8px] text-steel">K: {item.kills || 0}</span>
                <span className="font-mono text-[8px] text-steel">B: {item.booyahs || 0}</span>

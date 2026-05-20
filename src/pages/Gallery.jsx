@@ -4,6 +4,7 @@ import { base44 } from '@/api/base44Client';
 import SectionHeader from '../components/ui/SectionHeader';
 import LoadingScreen from '../components/ui/LoadingScreen';
 import { X, ZoomIn, Play } from 'lucide-react';
+import { getEmbedUrl } from '@/utils';
 
 function MediaPreview({ item, onClose }) {
   useEffect(() => {
@@ -29,7 +30,7 @@ function MediaPreview({ item, onClose }) {
       >
         {item.type === 'video' ? (
           <div className="aspect-video">
-            <iframe src={item.url} className="w-full h-full" allowFullScreen title={item.title} />
+            <iframe src={getEmbedUrl(item.url)} className="w-full h-full" allowFullScreen title={item.title} />
           </div>
         ) : (
           <img src={item.url} alt={item.title} className="max-w-full max-h-[85vh] object-contain mx-auto" />

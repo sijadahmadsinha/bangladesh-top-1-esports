@@ -4,7 +4,6 @@ const PlayerSchema = new mongoose.Schema({
   ign: { type: String, required: true },
   real_name: { type: String },
   role: { type: String, required: true, default: "Rusher", enum: ["IGL","Rusher","Sniper","Support","Bomber","All-rounder","Coach","Manager","Rifler"] },
-  country: { type: String, default: "Bangladesh" },
   image_url: { type: String },
   bio: { type: String },
   uid: { type: String }, // In-game UID
@@ -29,7 +28,6 @@ const PlayerSchema = new mongoose.Schema({
   
   is_active: { type: Boolean, default: true },
   order: { type: Number, default: 0 },
-  jersey_number: { type: String },
 }, { timestamps: true });
 
 PlayerSchema.set('toJSON', {

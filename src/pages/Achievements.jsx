@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
 import SectionHeader from '../components/ui/SectionHeader';
 import LoadingScreen from '../components/ui/LoadingScreen';
-import PlacementBadge from '../components/ui/PlacementBadge';
 import { Trophy } from 'lucide-react';
+import { formatDate } from '@/utils';
 
 function AchievementCard({ achievement, index }) {
   return (
@@ -33,7 +33,15 @@ function AchievementCard({ achievement, index }) {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-graphene/90 to-transparent" />
         <div className="absolute bottom-0 left-0 p-4">
-          <PlacementBadge placement={achievement.placement} />
+          {achievement.placement && (
+            <span className={`font-mono text-xs px-2 py-1 border ${
+              achievement.placement === '1st Place'
+                ? 'bg-[#EF4444] text-white border-[#EF4444]'
+                : 'bg-white text-[#EF4444] border-white'
+            }`}>
+              {achievement.placement}
+            </span>
+          )}
         </div>
       </div>
 
@@ -42,7 +50,7 @@ function AchievementCard({ achievement, index }) {
         <h3 className="font-heading font-semibold text-silver text-lg mb-1">{achievement.title}</h3>
         <p className="font-body text-sm text-muted-foreground">{achievement.tournament_name}</p>
         <div className="flex items-center justify-between mt-4 pt-4 border-t border-silver/5">
-          {achievement.date && <span className="font-mono text-xs text-steel">{achievement.date}</span>}
+          {achievement.date && <span className="font-mono text-xs text-steel">{formatDate(achievement.date)}</span>}
           {achievement.prize_amount && (
             <span className="font-mono text-sm text-silver font-semibold">{achievement.prize_amount}</span>
           )}

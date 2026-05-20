@@ -4,9 +4,10 @@ const EarningSchema = new mongoose.Schema({
   tournament_name: { type: String, required: true },
   placement: { type: String },
   amount: { type: Number, required: true },
-  currency: { type: String, default: "BDT" },
+  currency: { type: String, default: "USD" },
   date: { type: String },
   banner_url: { type: String },
+  achievement_id: { type: mongoose.Schema.Types.ObjectId, ref: "Achievement" },
 }, { timestamps: true });
 
 EarningSchema.set('toJSON', {
