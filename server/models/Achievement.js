@@ -4,7 +4,56 @@ const AchievementSchema = new mongoose.Schema({
   title: { type: String, required: true },
   tournament_name: { type: String },
   image_url: { type: String },
-  date: { type: String },
+  date: {
+    type: String,
+    set: function(value) {
+      if (!value) return null;
+
+      // If it's already a string in DD/MM/YYYY format, return as-is
+      if (typeof value === 'string' && /^\d{2}\/\d{2}\/\d{4}$/.test(value.trim())) {
+        return value.trim();
+      }
+
+      // If it's a Date object, convert to DD/MM/YYYY
+      if (value instanceof Date) {
+        const day = String(value.getDate()).padStart(2, '0');
+        const month = String(value.getMonth() + 1).padStart(2, '0');
+        const year = value.getFullYear();
+        return `${day}/${month}/${year}`;
+      }
+
+      // Try parsing YYYY-MM-DD format
+      if (typeof value === 'string') {
+        const match = value.trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if (match) {
+          return `${match[3]}/${match[2]}/${match[1]}`;
+        }
+      }
+
+      // Try parsing as a date and converting
+      const parsed = new Date(value);
+      if (!isNaN(parsed.getTime())) {
+        const day = String(parsed.getDate()).padStart(2, '0');
+        const month = String(parsed.getMonth() + 1).padStart(2, '0');
+        const year = parsed.getFullYear();
+        return `${day}/${month}/${year}`;
+      }
+
+      return value;
+    },
+    get: function(value) {
+      // When retrieving, ensure it's in a sortable format for Mongoose
+      if (!value) return null;
+
+      if (typeof value === 'string' && /^\d{2}\/\d{2}\/\d{4}$/.test(value.trim())) {
+        // Convert DD/MM/YYYY to a Date object for proper sorting
+        const [day, month, year] = value.trim().split('/');
+        return new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+      }
+
+      return value instanceof Date ? value : new Date(value);
+    }
+  },
   placement: { type: String, required: true, default: "1st Place" },
   prize_amount: { type: String },
   description: { type: String },
@@ -13,7 +62,17 @@ const AchievementSchema = new mongoose.Schema({
 AchievementSchema.set('toJSON', {
   virtuals: true,
   transform: (doc, ret) => {
-    ret.id = ret._id;
+    ret.id = ret._id.toString();
+    // Ensure date is always returned in DD/MM/YYYY format
+    if (ret.date) {
+      if (ret.date instanceof Date) {
+        const day = String(ret.date.getDate()).padStart(2, '0');
+        const month = String(ret.date.getMonth() + 1).padStart(2, '0');
+        const year = ret.date.getFullYear();
+        ret.date = `${day}/${month}/${year}`;
+      }
+      // If it's a string, keep it as-is (should already be in DD/MM/YYYY format)
+    }
     delete ret._id;
     delete ret.__v;
     return ret;

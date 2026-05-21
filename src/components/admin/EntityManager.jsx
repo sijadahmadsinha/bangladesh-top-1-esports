@@ -108,7 +108,9 @@ export default function EntityManager({ entityName, entity, fields, title, rende
 
   const load = () => {
     setLoading(true);
-    entity.list('-created_date').then(setItems).finally(() => setLoading(false));
+    // For Achievement entities, sort by achievement date; otherwise sort by creation date
+    const sortField = entityName === 'Achievement' ? '-date' : '-created_date';
+    entity.list(sortField).then(setItems).finally(() => setLoading(false));
   };
 
   useEffect(() => { load(); }, []);

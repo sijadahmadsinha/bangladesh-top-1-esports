@@ -41,19 +41,25 @@ exports.list = async (req, res) => {
   try {
     const Model = getModel(req.params.entityName);
     const { limit = 50, page = 1, sort = '-createdAt', ...query } = req.query;
-    
+
     let parsedQuery = { ...query };
-    
+
     const items = await Model.find(parsedQuery)
       .sort(sort)
       .limit(parseInt(limit, 10))
       .skip((parseInt(page, 10) - 1) * parseInt(limit, 10));
-      
+
     const total = await Model.countDocuments(parsedQuery);
-    
+
     // Convert to JSON to apply the id transform
-    const itemsJson = items.map(item => item.toJSON());
-    
+    const itemsJson = items.map(item => {
+      const json = item.toJSON();
+      if (req.params.entityName === 'Achievement' && item._id) {
+        console.log(`Achievement "${json.title}" toJSON:`, json);
+      }
+      return json;
+    });
+
     res.json({
       items: itemsJson,
       total,

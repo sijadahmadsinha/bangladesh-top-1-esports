@@ -11,7 +11,7 @@ export default function AchievementsPreview() {
   const [achievements, setAchievements] = useState([]);
 
   useEffect(() => {
-    base44.entities.Achievement.list('-created_date', 6).then(setAchievements).catch(() => {});
+    base44.entities.Achievement.list('-date', 6).then(setAchievements).catch(() => {});
   }, []);
 
   if (!achievements.length) return null;
