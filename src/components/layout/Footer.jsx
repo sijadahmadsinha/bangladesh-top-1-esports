@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <img src="https://media.base44.com/images/public/6a06c41b0b0e28e4ac98d295/f2e92fb3c_logo.svg" alt="TOP-1 Esports" className="h-12 w-auto mb-3" />
-            <p className="font-mono text-steel text-xs tracking-ultra uppercase mb-4">Bangladesh TOP 1 Esport Official</p>
+            <p className="font-mono text-steel text-xs tracking-ultra uppercase mb-4">Bangladesh TOP 1 Esports Official</p>
             <p className="font-body text-muted-foreground text-sm leading-relaxed">
               Dominating the competitive Free Fire scene with precision, strategy, and relentless dedication.
             </p>
@@ -56,7 +56,7 @@ export default function Footer() {
 
         <div className="micro-border-t pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-mono text-xs text-steel">© {year} TOP-1 Esports. All rights reserved.</p>
-          <p className="font-mono text-xs text-steel/50">Meet with developer <a href="https://sijadahmad98.netlify.app">click here</a> </p>
+          <p className="font-mono text-xs text-steel/50">Meet with developer <a href="https://sijadahmad98.netlify.app" target="_blank" rel="noopener noreferrer" className="text-steel/50 hover:text-silver transition-colors">click here</a> </p>
         </div>
       </div>
     </footer>
