@@ -42,19 +42,44 @@ exports.list = async (req, res) => {
     const Model = getModel(req.params.entityName);
     const { limit = 50, page = 1, sort = '-createdAt', ...query } = req.query;
 
-    let parsedQuery = { ...query };
+    const parsedQuery = { ...query };
+    const sortField = typeof sort === 'string' ? sort.replace(/^-/, '') : null;
+    const sortDirection = typeof sort === 'string' && sort.startsWith('-') ? -1 : 1;
 
-    const items = await Model.find(parsedQuery)
-      .sort(sort)
-      .limit(parseInt(limit, 10))
-      .skip((parseInt(page, 10) - 1) * parseInt(limit, 10));
+    let items;
+    if (req.params.entityName === 'Achievement' && sortField === 'date') {
+      items = await Model.aggregate([
+        { $match: parsedQuery },
+        {
+          $addFields: {
+            __sortDate: {
+              $dateFromString: {
+                dateString: '$date',
+                format: '%d/%m/%Y',
+                onError: new Date(0),
+                onNull: new Date(0)
+              }
+            }
+          }
+        },
+        { $sort: { __sortDate: sortDirection } },
+        { $skip: (parseInt(page, 10) - 1) * parseInt(limit, 10) },
+        { $limit: parseInt(limit, 10) }
+      ]);
+    } else {
+      items = await Model.find(parsedQuery)
+        .sort(sort)
+        .limit(parseInt(limit, 10))
+        .skip((parseInt(page, 10) - 1) * parseInt(limit, 10));
+    }
 
     const total = await Model.countDocuments(parsedQuery);
 
     // Convert to JSON to apply the id transform
     const itemsJson = items.map(item => {
-      const json = item.toJSON();
-      if (req.params.entityName === 'Achievement' && item._id) {
+      const doc = typeof item.toJSON === 'function' ? item : Model.hydrate(item);
+      const json = doc.toJSON();
+      if (req.params.entityName === 'Achievement' && json._id) {
         console.log(`Achievement "${json.title}" toJSON:`, json);
       }
       return json;
